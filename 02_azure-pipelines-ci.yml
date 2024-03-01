@@ -50,8 +50,8 @@ jobs:
       SonarCloud: 'SonarCloud'
       organization: 'willosoc'
       scannerMode: 'MSBuild'
-      projectKey: 'WillOsoc_WebAppWithDatabaseDemo'
-      projectName: 'WebAppWithDatabaseDemo'
+      projectKey: 'WebAppWithDatabaseDemo'
+      projectName: 'WillOsoc_WebAppWithDatabaseDemo'
 
   - task: DotNetCoreCLI@2
     displayName: Build
