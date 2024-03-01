@@ -47,9 +47,11 @@ jobs:
   - task: SonarCloudPrepare@1
     displayName: 'Prepare analysis on SonarCloud'
     inputs:
-      SonarCloud: SonarCloud
-      organization: willosoc
-      projectKey: WebAppWithDatabaseDemo
+      SonarCloud: 'SonarCloud'
+      organization: 'willosoc'
+      scannerMode: 'MSBuild'
+      projectKey: 'WebAppWithDatabaseDemo'
+      projectName: 'WillOsoc_WebAppWithDatabaseDemo'
 
   - task: DotNetCoreCLI@2
     displayName: Build
