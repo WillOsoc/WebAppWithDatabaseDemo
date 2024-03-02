@@ -80,9 +80,10 @@ stages:
       displayName: Prepare analysis on SonarCloud
       enabled: ${{ parameters.runCompletePipeline }}
       inputs:
-        SonarCloud: SonarCloud
-        organization: houssemdellai
-        projectKey: WebAppWithDatabaseDemo
+        SonarCloud: 'SonarCloud'
+        organization: 'willosoc'
+        projectKey: 'sonar.WillOsoc_WebAppWithDatabaseDemo'
+        projectName: 'sonar.WebAppWithDatabaseDemo'
 
     - task: DotNetCoreCLI@2
       displayName: Build WebApp
@@ -182,15 +183,15 @@ stages:
   variables:
     azureSubscription: 'WebAppWithDatabaseDemo_spn' # couldn't be referenced
     ResourceGroupName: '$(Prefix)-$(Release.EnvironmentName)-$(UniqueId)-RG'
-    Database.Admin: 'houssem'
+    Database.Admin: 'wadmin'
     Database.Password: '@Aa123456' # to be secured in Key Vault
     Database.Name: 'EmployeesDB'
     WebAppName: '$(Prefix)-$(Release.EnvironmentName)-$(UniqueId)'
     WebAppNameUrl: 'https://$(WebAppName).azurewebsites.net/'
     SqlServerName: '$(Prefix)-sql-$(Release.EnvironmentName)-$(UniqueId)'
-    Prefix: 'tunis'
+    Prefix: 'az-eus-woc'
     Release.EnvironmentName: 'dev'
-    UniqueId: '1280' #'$(Build.BuildId)'
+    UniqueId: '1103' #'$(Build.BuildId)'
     hostingPlanName: '$(Prefix)-service-plan'
 
   jobs:
@@ -211,10 +212,10 @@ stages:
       displayName: Validate ARM templates
       enabled: ${{ parameters.runCompletePipeline }}
       inputs:
-        azureSubscription: 'WebAppWithDatabaseDemo_spn'
+        azureSubscription: 'SP-Laboratorio'
         action: 'Create Or Update Resource Group'
         resourceGroupName: '$(ResourceGroupName)'
-        location: 'West Europe'
+        location: 'East US'
         templateLocation: 'Linked artifact'
         csmFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.json'
         csmParametersFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.parameters.json'
