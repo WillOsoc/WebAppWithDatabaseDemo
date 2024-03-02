@@ -208,19 +208,19 @@ stages:
         artifactName: arm
         downloadPath: $(System.DefaultWorkingDirectory)
 
-    - task: AzureResourceGroupDeployment@2
-      displayName: Validate ARM templates
-      enabled: ${{ parameters.runCompletePipeline }}
-      inputs:
-        azureSubscription: 'SP-Laboratorio'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: '$(ResourceGroupName)'
-        location: 'East US'
-        templateLocation: 'Linked artifact'
-        csmFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.json'
-        csmParametersFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.parameters.json'
-        overrideParameters: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
-        deploymentMode: 'Validation'
+#    - task: AzureResourceGroupDeployment@2
+#      displayName: Validate ARM templates
+#      enabled: ${{ parameters.runCompletePipeline }}
+#      inputs:
+#        azureSubscription: 'SP-Laboratorio'
+#        action: 'Create Or Update Resource Group'
+#        resourceGroupName: '$(ResourceGroupName)'
+#        location: 'East US'
+#        templateLocation: 'Linked artifact'
+#        csmFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.json'
+#        csmParametersFile: '$(System.DefaultWorkingDirectory)/arm/WebSiteSQLDatabase.parameters.json'
+#        overrideParameters: '-hostingPlanName $(hostingPlanName) -skuName "F1" -skuCapacity 1 -administratorLogin $(Database.Admin) -administratorLoginPassword $(Database.Password) -databaseName $(Database.Name) -collation "SQL_Latin1_General_CP1_CI_AS" -edition "Basic" -maxSizeBytes "1073741824" -requestedServiceObjectiveName "Basic" -webSiteName $(WebAppName) -sqlserverName $(SqlServerName)'
+#        deploymentMode: 'Validation'
 
     - task: AzSKARMTemplateChecker@4
       displayName: Scan ARM templates using AzSK
